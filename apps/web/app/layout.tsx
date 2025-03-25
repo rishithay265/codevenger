@@ -1,17 +1,23 @@
-import { Analytics } from '@vercel/analytics/react'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
-
-import { Providers } from '@/components/providers'
-import { Toaster } from '@/components/ui/toaster'
+import { Metadata, Viewport } from 'next'
+import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
+import './globals.css'
 
-import '@/styles/globals.css'
+export const metadata: Metadata = {
+  title: 'CodeVenger',
+  description: 'A more efficient tool than v0.dev',
+  icons: {
+    icon: '/favicon.ico'
+  }
+}
 
-export const metadata = {
-  title: 'CodeVenger - Advanced AI-Powered UI Generation',
-  description: 'Generate beautiful, type-safe, and accessible UI components with AI',
-  metadataBase: new URL('https://codevenger.vercel.app'),
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' }
+  ]
 }
 
 interface RootLayoutProps {
@@ -23,16 +29,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          'font-sans antialiased',
           GeistSans.variable,
           GeistMono.variable
         )}
       >
-        <Providers>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
-          <Toaster />
-        </Providers>
-        <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )
