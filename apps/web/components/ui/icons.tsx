@@ -61,3 +61,24 @@ export function IconMoon({ size = 20, ...props }: IconProps) {
     </svg>
   )
 }
+
+export function IconSend({ size = 20, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M20.7639 2.23606L3.23606 9.23606C2.47376 9.53249 2.47376 10.4675 3.23606 10.7639L9.87868 13.1213L12.2361 19.7639C12.5325 20.5262 13.4675 20.5262 13.7639 19.7639L20.7639 2.23606C21.0604 1.47376 20.5262 0.939339 19.7639 1.23606L2.23606 8.23606"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
